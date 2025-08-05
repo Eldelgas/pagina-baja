@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Baja de comunicaciones</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 60px;
+      background: #f8f8f8;
+    }
+    .box {
+      background: white;
+      padding: 30px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>🟢 Baja confirmada</h2>
+    <p>Tu correo ha sido dado de baja correctamente.<br>No recibirás más mensajes.</p>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const email = params.get("email");
+
+    if (email) {
+      fetch("https://tu-webhook-de-n8n.com/webhook/baja", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email: email })
+      });
+    }
+  </script>
+</body>
+</html>
